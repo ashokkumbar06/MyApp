@@ -1,6 +1,5 @@
 package MyApp.Controller;
 
-import MyApp.Entity.Apps;
 import MyApp.Entity.JournalEntry;
 import MyApp.Service.JournalEntryService;
 import org.bson.types.ObjectId;
@@ -28,11 +27,9 @@ public class JournalEntryController {
     List<JournalEntry> data = new ArrayList<>();
 
     @PostMapping
-    public ResponseEntity<Apps> createEntry(@RequestBody Apps myEntry) {
-        System.out.println("Received: " + myEntry);
+    public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry) {
         if (myEntry != null) {
-            //JournalEntry data = journalEntryService.saveEntry(myEntry);
-            System.out.println(myEntry);
+            JournalEntry data = journalEntryService.saveEntry(myEntry);
             return new ResponseEntity(data, HttpStatus.CREATED);
         } else {
             return new ResponseEntity("Data is empty", HttpStatus.NOT_FOUND);
