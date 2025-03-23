@@ -1,23 +1,25 @@
 package MyApp.Entity;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
 
-@Document(collection = "journal_entries")
 @Data
 @NoArgsConstructor
+@Document(collection = "MyApp")
 public class JournalEntry {
+
     @Id
     private ObjectId id;
-    @NonNull
+    @NotNull(message = "Title cannot be null")
     private String title;
+    @NotNull(message = "Title cannot be null")
     private String content;
-   // private LocalDateTime date;
-    //private Sentiment sentiment;
+    // private LocalDateTime date;
+    // private Sentiment sentiment;
 }

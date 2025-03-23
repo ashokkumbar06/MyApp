@@ -1,14 +1,18 @@
 package MyApp.Controller;
 
+import MyApp.Entity.Apps;
 import MyApp.Entity.JournalEntry;
 import MyApp.Service.JournalEntryService;
-
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//http://localhost:8080/journal
 @RestController
 @RequestMapping("/journal")
 public class JournalEntryController {
@@ -21,10 +25,18 @@ public class JournalEntryController {
         return null;
     }
 
+    List<JournalEntry> data = new ArrayList<>();
+
     @PostMapping
-    public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry) {
-        JournalEntry data = journalEntryService.saveEntry(myEntry);
-        return new ResponseEntity(data, HttpStatus.CREATED);
+    public ResponseEntity<Apps> createEntry(@RequestBody Apps myEntry) {
+        System.out.println("Received: " + myEntry);
+        if (myEntry != null) {
+            //JournalEntry data = journalEntryService.saveEntry(myEntry);
+            System.out.println(myEntry);
+            return new ResponseEntity(data, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity("Data is empty", HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("id/{myId}")
@@ -37,8 +49,4 @@ public class JournalEntryController {
         return null;
     }
 
-    @PutMapping("id/{myId}")
-    public ResponseEntity<?> updateJournalById(@PathVariable ObjectId myId, @RequestBody JournalEntry newEntry) {
-        return null;
-    }
 }
