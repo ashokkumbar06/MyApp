@@ -19,11 +19,6 @@ public class JournalEntryController {
     @Autowired
     private JournalEntryService journalEntryService;
 
-    @GetMapping
-    public ResponseEntity<?> getAllJournalEntriesOfUser() {
-        return null;
-    }
-
     List<JournalEntry> data = new ArrayList<>();
 
     @PostMapping
@@ -36,6 +31,12 @@ public class JournalEntryController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<JournalEntry>> getAllJournalEntry() {
+        List<JournalEntry> alldata = journalEntryService.getAllJournalEntry();
+        return new ResponseEntity<>(alldata, HttpStatus.CREATED);
+    }
+
     @GetMapping("id/{myId}")
     public ResponseEntity<?> getJournalEntryById(@PathVariable String myId) {
         return null;
@@ -46,4 +47,9 @@ public class JournalEntryController {
         return null;
     }
 
+    @DeleteMapping("/deleteAllDoc")
+    public ResponseEntity<String> deleteJournalEntryById() {
+        String response = journalEntryService.deleteJournalEntry();
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
 }
