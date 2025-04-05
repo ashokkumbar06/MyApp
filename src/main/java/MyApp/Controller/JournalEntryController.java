@@ -47,7 +47,7 @@ public class JournalEntryController {
         return null;
     }
 
-    @DeleteMapping("/deleteAllDoc")
+    @DeleteMapping
     public ResponseEntity<String> deleteJournalEntryById() {
         String response = journalEntryService.deleteJournalEntry();
         return new ResponseEntity<>(response, HttpStatus.CREATED);

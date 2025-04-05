@@ -37,6 +37,6 @@ public class JournalEntryService {
             journalEntryRepository.deleteAll();
             return "All doc are cleared now !";
         }
-        return "file are empty currently there is now data is present in ur Db !";
+        return "file are empty currently there is no data is present in ur Db !";
     }
 }
