@@ -16,10 +16,9 @@ import java.util.List;
 @RequestMapping("/journal")
 public class JournalEntryController {
 
+    List<JournalEntry> data = new ArrayList<>();
     @Autowired
     private JournalEntryService journalEntryService;
-
-    List<JournalEntry> data = new ArrayList<>();
 
     @PostMapping
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry) {
